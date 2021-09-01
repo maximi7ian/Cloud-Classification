@@ -13,8 +13,9 @@ The dataset is avaliable at this [link](http://vintage.winklerbros.net/swimcat.h
 ## Model
 The preparation and uploading of the images is carried out by the image_prep.py script and the TF model is specified in the training.py script. Below is the structure of the model used for training:
 
+<br>
 <div style="text-align:center"><img src="Assets/model.png" /></div>
-
+<br>
 
 The model's training can be evaluated using TensorBoard on a local server using this following bash command:
 
