@@ -23,11 +23,12 @@ The model's training can be evaluated using TensorBoard on a local server using 
 
 This returned the following accuracy and loss plots (blue line specifies training and orange validation).
 
+<br><br>
 <div style = "text-align:center">
   <img src="Assets/Accuracy.png" width="45%" />
   <img src="Assets/Loss.png" width="45%" /> 
 </div>
-
+<br><br>
 
 The model can then be deployed using:
 
