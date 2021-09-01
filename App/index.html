@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cloud Classifier</title>
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        
+        <style>
+            
+            table {
+                background-image: url(https://images.unsplash.com/photo-1536250695484-36ed15d06abf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mjh8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
+            }
+            
+            table td {
+                overflow: hidden; 
+                vertical-align: middle;
+                height: 30px;
+                text-align: center;
+            }
+            .video {
+                overflow: hidden;
+            }
+            .video video {
+                width: 100%;
+            }
+            .photo-button {
+                width: 100px;
+                height: 100px;
+                left: 50%;
+                margin-top: -50px;
+                margin-left: -50px;
+                position: absolute;
+            }
+            .circle {
+                position: absolute;
+                top: 12%;
+                left: 12%;
+                bottom: 12%;
+                right: 12%;
+                border-radius: 100%;
+                background-color: #ffffff;
+                opacity: 0;
+            }
+            .ring {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                
+                border-radius: 100%;
+                border: 0.5em solid #ffffff;
+                opacity: 0.8;
+            }
+            .photo-button .circle, .photo-button .ring {
+                transition: all 0.25s;
+            }
+            .photo-button:hover .circle {
+                opacity: 1;
+            }
+            .photo-button:active .ring {
+                opacity: 1;
+            }
+            .photo-button:active .circle {
+                opacity: 0.5;
+            }
+
+        </style>
+
+    </head>
+    <body >
+        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    
+                    <td valign="center">
+                        <br><br><br><br>
+                        <h1 style="color: aliceblue; font-family: Courier New;"><strong>Cloud Classifier</strong></h1>
+                        <br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="center">
+                        <div class="video">
+                            <video id="video" autoplay ></video>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="center">
+                        <br><br><br><br><br><br>
+                        <div class="photo-button" id="send">
+                            <div class="circle"></div>
+                            <div class="ring"></div>
+                        </div>
+                        <br><br><br><br><br><br>
+
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <div style="display: none;">
+                        <canvas id="canvas" height="125" width="125" style="background-color: grey"></canvas>
+                    </div>
+    
+                </tr>
+                
+            </tbody>
+
+        </table>
+
+        
+    </body>
+</html>
+
+
+<script>
+
+    // Elements for taking the snapshot
+    var video = document.getElementById('video');
+    
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    // Get access to the camera!
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+        });
+    }
+
+    // Trigger photo take
+    var btn = document.getElementById("send");
+    btn.style.cursor = 'pointer';
+
+
+    btn.onclick = function() {
+        context.drawImage(video, 0, 0, 125, 125); // Safer as cameras may return different size data
+        canvas.toBlob(uploadImage, "image/jpeg");
+    };
+
+    function uploadImage(file) {
+
+        var fd =  new FormData();
+        fd.append("snap", file);
+
+        $.ajax({
+            type: 'POST',
+            url: 'upload',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                alert('Looks Like ' + data['Class'] + '!' + '  (' + data['Pred'] + ')');
+            }
+        });
+    }
+
+    
+</script>
