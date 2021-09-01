@@ -1,6 +1,5 @@
 # Classifying Clouds in The Clouds
 
-
 In this repo we:
     - Train and deploy a Sagemaker TensorFlow model to classify pictures from the Singapore Whole sky IMaging CATegories (SWIMCAT) dataset. 
     - Create a Flask application that allows its users to take a picture of the sky and classifies it using this communicate with this model.
@@ -8,16 +7,13 @@ In this repo we:
 
 The dataset is avaliable at this [link](http://vintage.winklerbros.net/swimcat.htm) and below are some example pictures:
 
-<br><br>
+
 <div style="text-align:center"><img src="Assets/ex_pics.jpg" /></div>
-<br><br>
 
 ## Model
 The preparation and uploading of the images is carried out by the image_prep.py script and the TF model is specified in the training.py script. Below is the structure of the model used for training:
 
-<br><br>
 <div style="text-align:center"><img src="Assets/model.png" /></div>
-<br><br>
 
 
 The model's training can be evaluated using TensorBoard on a local server using this following bash command:
@@ -26,12 +22,10 @@ The model's training can be evaluated using TensorBoard on a local server using 
 
 This returned the following accuracy and loss plots (blue line specifies training and orange validation).
 
-<br><br>
 <div style = "text-align:center">
   <img src="Assets/Accuracy.png" width="45%" />
   <img src="Assets/Loss.png" width="45%" /> 
 </div>
-<br><br>
 
 
 The model can then be deployed using:
@@ -48,9 +42,7 @@ The upload route (in the application.py script) and Ajax logic (in the index.htm
 ## All Together
 The final product isn't too bad! Below is a video example of it in action...
 
-<br><br>
 <div style="text-align:center"><img src="Assets/CCmov.gif" width="40%" /></div>
-<br><br>
 
 
 ## Final Remarks
