@@ -5,7 +5,7 @@ In this repo we:
     - Create a Flask application that allows its users to take a picture of the sky and classifies it using this communicate with this model.
 
 
-The dataset is avaliable at this [link](http://vintage.winklerbros.net/swimcat.htm) and below are some example pictures:
+The dataset is avaliable at this [link](http://vintage.winklerbros.net/swimcat.html) and below are some example pictures:
 
 
 <div style="text-align:center"><img src="Assets/ex_pics.jpg" /></div>
