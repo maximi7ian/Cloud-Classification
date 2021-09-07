@@ -50,4 +50,4 @@ The final product isn't too bad! Below is a video example of it in action...
 ## Final Remarks
 Hopefully you find this repo useful and you're welcome to contact me with questions and/or suggestions!
 
-Feel free to check out my [Medium Article](PLACEHOLDERLINK) for a more in depth description of this project!
+Feel free to check out my [Medium Article](https://medium.com/@maxfranka/classifying-clouds-in-the-cloud-7d35998a94bc) for a more in depth description of this project!
